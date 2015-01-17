@@ -1,0 +1,46 @@
+/* global describe, it */
+'use strict';
+
+var expect = require('chai').expect;
+var mock = require('./mock-helpable').create();
+
+describe('n', function () {
+    require('../lib/n').create().help(mock);
+    var options = {};
+
+    describe('Predicate:', function () {
+        it('n-even?', function () {
+            var helper = mock.helper('n-even?');
+
+            expect(helper(2, options)).to.be.true();
+            expect(helper(1, options)).to.be.false();
+            expect(helper(0, options)).to.be.true();
+        });
+    });
+
+    describe('Operation:', function () {
+        it('n-add', function () {
+            var helper = mock.helper('n-add');
+
+            expect(helper(1, 2, options)).to.equal(3);
+        });
+
+        it('n-subtract', function () {
+            var helper = mock.helper('n-subtract');
+
+            expect(helper(1, 2, options)).to.equal(-1);
+        });
+
+        it('n-muliply', function () {
+            var helper = mock.helper('n-multiply');
+
+            expect(helper(2, 2, options)).to.equal(4);
+        });
+
+        it('n-devide', function () {
+            var helper = mock.helper('n-devide');
+
+            expect(helper(2, 2, options)).to.equal(1);
+        });
+    });
+});

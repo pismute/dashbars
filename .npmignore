@@ -1,0 +1,8 @@
+.*
+*.swp
+npm-debug.log
+docs/
+test/
+dist/
+gulpfile.js
+node_modules/

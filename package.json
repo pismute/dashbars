@@ -1,0 +1,40 @@
+{
+  "name": "dashbars",
+  "version": "0.1.2",
+  "description": "A modern helper library",
+  "homepage": "https://github.com/pismute/dashbars",
+  "author": {
+    "name": "Changwoo Park",
+    "email": "pismute@gmail.com",
+    "url": "https://pismute.github.com/"
+  },
+  "repository": "pismute/dashbars",
+  "license": "MIT",
+  "main": "./index",
+  "keywords": [
+    "dashbars",
+    "handlebars",
+    "helpers",
+    "dashbars"
+  ],
+  "dependencies": {
+    "lodash": "^2.4.1",
+    "moment": "^2.9.0"
+  },
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "gulp": "^3.8.10",
+    "gulp-cached": "^1.0.2",
+    "gulp-jshint": "^1.9.0",
+    "gulp-load-plugins": "^0.8.0",
+    "gulp-mocha": "^2.0.0",
+    "gulp-size": "^1.2.0",
+    "gulp-using": "0.0.1",
+    "gulp-util": "^3.0.2",
+    "handlebars": "^2.0.0",
+    "run-sequence": "^1.0.2"
+  },
+  "scripts": {
+    "test": "gulp test"
+  }
+}
