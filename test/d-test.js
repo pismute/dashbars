@@ -5,7 +5,7 @@ var expect = require('chai').expect;
 var mock = require('./mock-helpable').create();
 
 describe('date', function () {
-    require('../lib/d').create().help(mock);
+    require('../dist/index').create().help(mock);
     var options = {};
 
     describe('return string', function () {

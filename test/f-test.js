@@ -4,7 +4,7 @@
 var expect = require('chai').expect;
 
 describe('file', function () {
-    var f = require('../lib/f');
+    var f = require('../dist/index');
     var options = {};
 
     f.help(require('./mock-helpable').create());

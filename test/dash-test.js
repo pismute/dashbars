@@ -6,11 +6,7 @@ var _ = require('lodash');
 var mock = require('./mock-helpable').create();
 
 describe('dash', function () {
-    require('../lib/dash').create().help(mock);
-    require('../lib/p').create().help(mock);
-    require('../lib/n').create().help(mock);
-    require('../lib/s').create().help(mock);
-
+    require('../dist/index').create().help(mock);
     var options = {};
 
     mock.registerHelper({

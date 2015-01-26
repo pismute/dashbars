@@ -10,5 +10,6 @@
   "unused": true,
   "boss": true,
   "eqnull": true,
+  "predef": ["define", "window"],
   "node": true
 }

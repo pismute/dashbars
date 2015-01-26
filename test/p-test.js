@@ -5,7 +5,7 @@ var expect = require('chai').expect;
 var mock = require('./mock-helpable').create();
 
 describe('predicates', function () {
-    require('../lib/p').create().help(mock);
+    require('../dist/index').create().help(mock);
     var options = {};
 
     it('-is?', function () {

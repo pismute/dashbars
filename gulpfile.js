@@ -5,16 +5,49 @@ var $ = require('gulp-load-plugins')();
 var seq = require('run-sequence');
 
 gulp.task('default', function(done){
-    return seq('lint',
+    return seq('clean',
+               'scripts',
+               'lint',
                'test',
               done);
 });
 
-var files = ['lib/**/*.js', 'test/**/*.js'];
+gulp.task('scripts', function(done){
+    return seq('scripts:browser',
+               'scripts:npm',
+               done);
+});
+
+gulp.task('scripts:browser', function(){
+    return gulp.src(['lib/**/*.js', '!lib/f.js'])
+        .pipe($.using())
+        .pipe($.wrap('//<%= file.relative %>\n<%= contents %>\n'))
+        .pipe($.concat('dashbars.js'))
+        .pipe($.wrap({src:'lib/wrap.js.txt'}, {modules:'dash, p, s, n, d'}))
+        .pipe(gulp.dest('dist/'))
+        .pipe($.using())
+        .pipe($.uglify())
+        .pipe($.rename('dashbars.min.js'))
+        .pipe(gulp.dest('dist/'))
+        .pipe($.using());
+});
+
+gulp.task('scripts:npm', function(){
+    return gulp.src('lib/**/*.js')
+        .pipe($.using())
+        .pipe($.wrap('//<%= file.relative %>\n<%= contents %>\n'))
+        .pipe($.concat('index.js'))
+        .pipe($.wrap({src:'lib/wrap.js.txt'}, {modules:'dash, p, s, n, d, f'}))
+        .pipe(gulp.dest('dist/'))
+        .pipe($.using());
+});
+
+gulp.task('clean', function(done) {
+    require('del')('dist/', done);
+});
 
 gulp.task('lint', function(){
-    return gulp.src(files)
-        .pipe($.cached('lint'))
+    return gulp.src(['gulpfile.js', 'dist/**/*.js', '!**/*.min.js'])
         .pipe($.jshint('.jshintrc'))
         .pipe($.jshint.reporter('default'));
 });
@@ -28,18 +61,14 @@ gulp.task('test', function() {
 });
 
 // Watch
-gulp.task('watch', ['default'], function(done){
-
-    seq('default',
-        done);
-
-    gulp.watch(files, ['lint', 'test']);
+gulp.task('watch', ['default'], function(){
+    gulp.watch('dist/**/*.js', ['default']);
 });
 
 gulp.task('publish', function(done){
-    seq('npm', done);
+    seq('publish:npm', done);
 });
 
-gulp.task('npm', function (done) {
+gulp.task('publish:npm', function (done) {
     require("child_process").spawn('npm', ['publish'], { stdio: 'inherit' }).on('close', done);
 });
