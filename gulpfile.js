@@ -4,6 +4,14 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var seq = require('run-sequence');
 
+gulp.task('bump', function(){
+    var _type = gulp.env.type || 'patch';
+    return gulp.src(['./package.json',
+                     './bower.json'])
+        .pipe($.bump({type:_type, indent: 4 }))
+        .pipe(gulp.dest('./'));
+});
+
 gulp.task('default', function(done){
     return seq('clean',
                'scripts',
