@@ -3,6 +3,8 @@
 npm-debug.log
 docs/
 test/
-dist/
+lib/
+dist/dashbars.js
+dist/dashbars.min.js
 gulpfile.js
 node_modules/
