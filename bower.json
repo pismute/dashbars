@@ -1,32 +1,32 @@
 {
-  "name": "dashbars",
-  "version": "0.1.2",
-  "homepage": "https://github.com/pismute/dashbars",
-  "authors": [
-    "Changwoo Park <pismute@gmail.com>"
-  ],
-  "description": "A modern helper library",
-  "main": "./dist/dashbars.js",
-  "keywords": [
-    "dashbars",
-    "handlebars",
-    "helpers"
-  ],
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules/",
-    "bower_components/",
-    "test/",
-    "lib/",
-    "docs/",
-    "package.json",
-    "gulpfile.js",
-    "README.md",
-    "dist/index.js"
-  ],
-  "dependencies": {
-    "lodash": "^2.0.0",
-    "moment": "^2.1.0"
-  }
+    "name": "dashbars",
+    "version": "0.1.3",
+    "homepage": "https://github.com/pismute/dashbars",
+    "authors": [
+        "Changwoo Park <pismute@gmail.com>"
+    ],
+    "description": "A modern helper library",
+    "main": "./dist/dashbars.js",
+    "keywords": [
+        "dashbars",
+        "handlebars",
+        "helpers"
+    ],
+    "license": "MIT",
+    "ignore": [
+        "**/.*",
+        "node_modules/",
+        "bower_components/",
+        "test/",
+        "lib/",
+        "docs/",
+        "package.json",
+        "gulpfile.js",
+        "README.md",
+        "dist/index.js"
+    ],
+    "dependencies": {
+        "lodash": "^2.0.0",
+        "moment": "^2.1.0"
+    }
 }

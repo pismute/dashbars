@@ -1,6 +1,6 @@
 {
     "name": "dashbars",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "A modern helper library",
     "homepage": "https://github.com/pismute/dashbars",
     "author": {
@@ -23,6 +23,7 @@
     "devDependencies": {
         "chai": "^1.10.0",
         "gulp": "^3.8.10",
+        "gulp-bump": "^0.1.11",
         "gulp-concat": "^2.4.3",
         "gulp-jshint": "^1.9.0",
         "gulp-load-plugins": "^0.8.0",
