@@ -7,4 +7,5 @@ lib/
 dist/dashbars.js
 dist/dashbars.min.js
 gulpfile.js
+bower.json
 node_modules/
