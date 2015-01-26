@@ -93,7 +93,8 @@ describe('dash', function () {
         it('-flatten', function () {
             var helper = mock.helper('-flatten');
 
-            expect(helper([[1,2],3,[4]], [5,6], options)).to.deep.equal([1,2,3,4,5,6]);
+            expect(helper([[1,2],3,[4,[5,6]]], true, options)).to.deep.equal([1,2,3,4,5,6]);
+            expect(helper([[1,2],3,[4,[5,6]]], options)).to.deep.equal([1,2,3,4,[5,6]]);
         });
     });
 
