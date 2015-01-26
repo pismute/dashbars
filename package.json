@@ -14,8 +14,7 @@
     "keywords": [
         "dashbars",
         "handlebars",
-        "helpers",
-        "dashbars"
+        "helpers"
     ],
     "dependencies": {
         "lodash": "^2.4.1",
