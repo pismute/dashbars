@@ -76,6 +76,8 @@ describe('dash', function () {
             var list = _.range(1,20);
             expect(helper('_lt-3?', list, options)).to.deep.equal(_.range(3,20));
             expect(helper('_lt-3?', list, options)).to.not.equal(list);
+
+            expect(helper('n-even?', _.range(0, 5), options)).to.deep.equal([1,2,3,4]);
         });
 
         it('-slice', function () {
@@ -93,8 +95,12 @@ describe('dash', function () {
         it('-flatten', function () {
             var helper = mock.helper('-flatten');
 
-            expect(helper([[1,2],3,[4,[5,6]]], true, options)).to.deep.equal([1,2,3,4,5,6]);
             expect(helper([[1,2],3,[4,[5,6]]], options)).to.deep.equal([1,2,3,4,[5,6]]);
+        });
+        it('-deep-flatten', function () {
+            var helper = mock.helper('-deep-flatten');
+
+            expect(helper([[1,2],3,[4,[5,6]]], options)).to.deep.equal([1,2,3,4,5,6]);
         });
     });
 
