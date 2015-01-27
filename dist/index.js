@@ -276,22 +276,14 @@ var _help = function(helpable){
     return this;
 };
 
-//TODO: remove cos it is not functional.
-var _extend = function(dashbars){
-    var registerers = this._registerers;
-
-    dashbars._registerers.forEach(function(registerer){
-        registerers.push(registerer);
-    });
-
-    return this;
+var _create = function(){
+    return _cons(this._registerers);
 };
 
-var _create = function(){
+var _cons = function(){
     var args = _().flatten(Array.prototype.slice.call(arguments));
     var dashbars = {
-        //TODO: remove extendable cos it is not functional.
-        _registerers: _().isEmpty(this._registerers)? []: this._registerers,
+        _registerers: [],
         _helpable: _emptyHelpable
     };
 
@@ -302,7 +294,7 @@ var _create = function(){
     dashbars.help = _help.bind(dashbars);
     dashbars.helper = _helper.bind(dashbars);
     dashbars.create = _create.bind(dashbars);
-    dashbars.extend = _extend.bind(dashbars);
+    dashbars.cons = _cons.bind(dashbars);
 
     return dashbars;
 };
@@ -522,5 +514,5 @@ var s = function s(_register){
     });
 };
 
-    return _create(dash, p, s, n, d, f);
+    return _cons(dash, p, s, n, d, f);
 });

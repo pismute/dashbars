@@ -9,5 +9,5 @@
     }
 })(this, function () {
 <%= contents %>
-    return _create(<%= modules %>);
+    return _cons(<%= modules %>);
 });

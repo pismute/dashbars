@@ -15,27 +15,19 @@ var _registerer = function(_register){
 
 describe('Dashbars', function () {
     describe('mock:', function () {
-        var dashbars = require('../dist/index').create(_registerer);
+        var dashbars = require('../dist/index').cons(_registerer);
 
         dashbars.help(require('./mock-helpable').create());
 
         it('lookup a helper', function(){
+            console.log(dashbars.helper('helper').toString());
+            console.log(_helper.toString());
             expect(dashbars.helper('helper')).to.equal(_helper);
-        });
-
-        it('extend dashbars', function(){
-            var dashbars2 = dashbars.create();
-
-            dashbars2.extend(dashbars);
-
-            dashbars2.help(require('./mock-helpable').create());
-
-            expect(dashbars2.helper('helper')).to.equal(_helper);
         });
     });
 
     describe('Handlebars:', function () {
-        var dashbars = require('../dist/dashbars').create(_registerer);
+        var dashbars = require('../dist/index').cons(_registerer);
 
         dashbars.help(require('handlebars').create());
 
