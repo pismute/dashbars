@@ -20,8 +20,6 @@ describe('Dashbars', function () {
         dashbars.help(require('./mock-helpable').create());
 
         it('lookup a helper', function(){
-            console.log(dashbars.helper('helper').toString());
-            console.log(_helper.toString());
             expect(dashbars.helper('helper')).to.equal(_helper);
         });
     });
