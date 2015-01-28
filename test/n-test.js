@@ -44,8 +44,8 @@ describe('n', function () {
             expect(helper(2, 2, options)).to.equal(4);
         });
 
-        it('n-devide', function () {
-            var helper = mock.helper('n-devide');
+        it('n-divide', function () {
+            var helper = mock.helper('n-divide');
 
             expect(helper(2, 2, options)).to.equal(1);
         });
