@@ -13,115 +13,123 @@ var _moment = function(){
     return (typeof window === 'undefined')? require('moment'): window.moment;
 };
 
-var d = function d(_register){
+var d = function d($register, $helper){
+    $helper = $helper; // for lint
+
     //return string
-    _register('d-iso', function(d) {
+    $register('d-iso', function(d) {
         return _moment()(d).toISOString();
     });
     //http://momentjs.com/docs/#/parsing/string-format/
-    _register('d-format', function(format, d) {
+    $register('d-format', function(format, d) {
         return _moment()(d).format(format);
     });
 
     //return date
-    _register('d-now', function() {
+    $register('d-now', function() {
         return new Date();
     });
-    _register('d-parse', function(format, d) {
+    $register('d-parse', function(format, d) {
         return _moment()(d, format).toDate();
     });
-    _register('d-add', function(n, unit, d) {
+    $register('d-add', function(n, unit, d) {
         return _moment()(d).add(n, unit).toDate();
     });
-    _register('d-subtract', function(n, unit, d) {
+    $register('d-subtract', function(n, unit, d) {
         return _moment()(d).subtract(n, unit).toDate();
     });
 };
 
 //dash.js
-var dash = function dash(_register, _helper){
+var dash = function dash($register, $helper){
     //List
-    _register('-map', function(fn, list) {
-        return list.map(_helper(fn));
+    $register('-map', function(fn, list) {
+        return list.map($helper(fn));
     });
-    _register('-sort', function(list, compare, options) {
-        return list.slice().sort(options && _helper(compare));
+    $register('-sort', function(list, compare, options) {
+        return list.slice().sort(options && $helper(compare));
     });
-    _register('-take', function(n, list) {
+    $register('-take', function(n, list) {
        return list.slice(0, n);
     });
-    _register('-drop', function(n, list) {
+    $register('-drop', function(n, list) {
        return list.slice(n);
     });
-    _register('-take-while', function(pred, list) {
-        return _().filter(list, _helper(pred));
+    $register('-filter', function(fn, list) {
+       return list.filter($helper(fn));
     });
-    _register('-drop-while', function(pred, list) {
-        return _().dropWhile(list, _helper(pred));
+    $register('-take-while', function(pred, list) {
+        return _().filter(list, $helper(pred));
     });
-    _register('-slice', function(list, begin, end, options) {
+    $register('-drop-while', function(pred, list) {
+        return _().dropWhile(list, $helper(pred));
+    });
+    $register('-slice', function(list, begin, end, options) {
         return list.slice(end && begin, options && end);
     });
-    _register('-flatten', function(list, deep, options) {
-        return _().flatten(list, options && deep);
+    $register('-flatten', function(list) {
+        return _().flatten(list);
+    });
+    $register('-deep-flatten', function(list) {
+        return _().flatten(list, true);
     });
 
     //Cons
-    _register('-array', function() {
+    $register('-array', function() {
         return Array.prototype.slice.call(arguments, 0, -1);
     });
-    _register('-range', function(from, to, step, options) {
+    $register('-range', function(from, to, step, options) {
         return _().range(to && from, step && to, options && step);
     });
-    _register('-object', function(json) {
+    $register('-object', function(json) {
         return JSON.parse(json);
     });
 
     //Reductions
-    _register('-size', function(list) {
+    $register('-size', function(list) {
         return list.length;
     });
-    _register('-find', function(pred, list) {
-        return _().find(list, _helper(pred).bind(this));
+    $register('-find', function(pred, list) {
+        return _().find(list, $helper(pred).bind(this));
     });
-    _register('-reduce', function(fn, initial, list) {
-        return list.reduce(_helper(fn), initial);
+    $register('-reduce', function(fn, initial, list) {
+        return list.reduce($helper(fn), initial);
     });
-    _register('-first', function(list) {
+    $register('-first', function(list) {
         return _().first(list);
     });
-    _register('-last', function(list) {
+    $register('-last', function(list) {
         return _().last(list);
     });
-    _register('-join', function(list, sep, options) {
+    $register('-join', function(list, sep, options) {
         return list.join(options? sep:'');
     });
-    _register('-sum', function(list) {
+    $register('-sum', function(list) {
         return list.reduce(function(r, e){
                 return r+e;
             }, 0);
     });
-    _register('-product', function(list) {
+    $register('-product', function(list) {
         return list.reduce(function(r, e){
                 return r*e;
             }, 1);
     });
-    _register('-min', function(list) {
+    $register('-min', function(list) {
         return list.reduce(function(r, e){
                 return r<e? r:e;
             }, Number.MAX_VALUE);
     });
-    _register('-max', function(list) {
+    $register('-max', function(list) {
         return list.reduce(function(r, e){
                 return r>e? r:e;
             }, Number.MIN_VALUE);
     });
 
     //Partitioning
-    _register('-group-by', function(fn, list) {
+    $register('-group-by', function(fn, list) {
         var that = this;
         return list.reduce(function(r, el){
-            var key = _helper(fn).call(that, el);
+            var key = $helper(fn).call(that, el);
 
             if( r[key] ){
                r[key].push(el);
@@ -134,73 +142,73 @@ var dash = function dash(_register, _helper){
     });
 
     //Iteration
-    _register('-grouped', function(size, list){
+    $register('-grouped', function(size, list){
         return _().range(0, list.length, size)
             .map(function(n){ return list.slice(n, n+size);});
     });
 
     //Predicate
-    _register('-every?', function(pred, list){
-        return list.every(_helper(pred));
+    $register('-every?', function(pred, list){
+        return list.every($helper(pred));
     });
-    _register('-some?', function(pred, list){
-        return list.some(_helper(pred));
+    $register('-some?', function(pred, list){
+        return list.some($helper(pred));
     });
-    _register('-none?', function(pred, list){
-        return !list.some(_helper(pred));
+    $register('-none?', function(pred, list){
+        return !list.some($helper(pred));
     });
-    _register('-contain?', function(item, list){
+    $register('-contain?', function(item, list){
         return list.some(function(el){
                 return el === item;
             });
     });
 
     //Set operation
-    _register('-union', function() {
-        return _().union.apply(_(),
+    $register('-union', function() {
+        return Array.prototype.concat.apply(arguments[0],
+            Array.prototype.slice.call(arguments, 1, -1));
+    });
+    $register('-difference', function() {
+        return _().difference.apply(null,
             Array.prototype.slice.call(arguments, 0, -1));
     });
-    _register('-difference', function() {
-        return _().difference.apply(_(),
+    $register('-intersection', function() {
+        return _().intersection.apply(null,
             Array.prototype.slice.call(arguments, 0, -1));
     });
-    _register('-intersection', function() {
-        return _().intersection.apply(_(),
-            Array.prototype.slice.call(arguments, 0, -1));
-    });
-    _register('-distinct', function(list) {
+    $register('-distinct', function(list) {
         return _().unique(list);
     });
 
     //Dictionary
-    _register('-get', function(key, dict) {
+    $register('-get', function(key, dict) {
         return dict[key];
     });
-    _register('-keys', function(dict) {
+    $register('-keys', function(dict) {
         return Object.keys(dict);
     });
-    _register('-values', function(dict) {
+    $register('-values', function(dict) {
         return Object.keys(dict).map(function(k){
                 return dict[k];
             });
     });
 
     //Object
-    _register('-json', function(dict) {
+    $register('-json', function(dict) {
         return JSON.stringify(dict);
     });
 
     //Function
-    _register('-call', function() {
+    $register('-call', function() {
         var fn = arguments[0];
         var args = Array.prototype.slice.call(arguments, 1, -1);
 
        return fn.apply(this, args);
     });
-    _register('-as-is', function(o) {
+    $register('-as-is', function(o) {
         return o;
     });
-    _register('-partial', function() {
+    $register('-partial', function() {
         var fn = arguments[0];
         var applied = Array.prototype.slice.call(arguments, 1, -1);
         var that = this;
@@ -213,15 +221,15 @@ var dash = function dash(_register, _helper){
                 }
             }
 
-            return _helper(fn).apply(that, args);
+            return $helper(fn).apply(that, args);
         };
     });
 
     //Side Effects
-    _register('-let', function(name, value) {
+    $register('-let', function(name, value) {
         this[name] = value;
     });
-    _register('-log', function() {
+    $register('-log', function() {
         console.log.call(this, Array.prototype.slice.call(arguments, 1, -1));
     });
 
@@ -281,7 +289,7 @@ var _create = function(){
 };
 
 var _cons = function(){
-    var args = _().flatten(Array.prototype.slice.call(arguments));
+    var args = _().flatten(Array.prototype.slice.call(arguments), true);
     var dashbars = {
         _registerers: [],
         _helpable: _emptyHelpable
@@ -305,26 +313,31 @@ var _ = function(){
 };
 
 //n.js
-var n = function n(_register){
+var n = function n($register, $helper){
+    $helper = $helper; // for lint
+
     //Predicate
-    _register('n-even?', function(n) {
+    $register('n-even?', function(n) {
         return n%2 === 0;
+    });
+    $register('n-odd?', function(n) {
+        return n%2 !== 0;
     });
 
     //Operation
-    _register('n-add', function(left, right) {
+    $register('n-add', function(left, right) {
         return left+right;
     });
 
-    _register('n-subtract', function(left, right) {
+    $register('n-subtract', function(left, right) {
         return left-right;
     });
 
-    _register('n-multiply', function(left, right) {
+    $register('n-multiply', function(left, right) {
         return left*right;
     });
 
-    _register('n-devide', function(left, right) {
+    $register('n-devide', function(left, right) {
         return left/right;
     });
 };
@@ -334,125 +347,129 @@ var _is = function(o){
     return !!o;
 };
 
-var p = function p(_register){
-    _register('-is?', _is);
-    _register('-and?', function() {
+var p = function p($register, $helper){
+    $helper = $helper; // for lint
+
+    $register('-is?', _is);
+    $register('-and?', function() {
         return Array.prototype.slice.call(arguments, 0, -1)
             .every(_is);
     });
-    _register('-or?', function() {
+    $register('-or?', function() {
         return Array.prototype.slice.call(arguments, 0, -1)
             .some(_is);
     });
-    _register('-not?', function(t) {
+    $register('-not?', function(t) {
         return !t;
     });
-    _register('-gt?', function(left, right) {
+    $register('-gt?', function(left, right) {
         return left > right;
     });
-    _register('-lt?', function(left, right) {
+    $register('-lt?', function(left, right) {
         return left < right;
     });
-    _register('-ge?', function(left, right) {
+    $register('-ge?', function(left, right) {
         return left >= right;
     });
-    _register('-le?', function(left, right) {
+    $register('-le?', function(left, right) {
         return left <= right;
     });
-    _register('-ne?', function(left, right) {
+    $register('-ne?', function(left, right) {
         return left !== right;
     });
-    _register('-equal?', function(left, right) {
+    $register('-equal?', function(left, right) {
         return left === right;
     });
-    _register('-deep-equal?', function(left, right) {
+    $register('-deep-equal?', function(left, right) {
         return _().isEqual(left,right);
     });
-    _register('-in?', function(prop, o) {
+    $register('-in?', function(prop, o) {
         return prop in o;
     });
-    _register('-of?', function(prop, o) {
+    $register('-of?', function(prop, o) {
         return Object.prototype.hasOwnProperty.call(o, prop);
     });
-    _register('-empty?', function(o){
+    $register('-empty?', function(o){
         return _().isEmpty(o);
     });
-    _register('-not-empty?', function(o){
+    $register('-not-empty?', function(o){
         return !_().isEmpty(o);
     });
-    _register('-string?', function(o){
+    $register('-string?', function(o){
         return _().isString(o);
     });
-    _register('-array?', function(o){
+    $register('-array?', function(o){
         return _().isArray(o);
     });
 };
 
 //s.js
-var s = function s(_register){
-    _register('s-size', function(s) {
+var s = function s($register, $helper){
+    $helper = $helper; // for lint
+
+    $register('s-size', function(s) {
         return s.length;
     });
-    _register('s-trim', function(s) {
+    $register('s-trim', function(s) {
         return s.trim();
     });
-    _register('s-take', function(n, s) {
+    $register('s-take', function(n, s) {
         return s.slice(0, n);
     });
-    _register('s-drop', function(n, s) {
+    $register('s-drop', function(n, s) {
         return s.slice(n);
     });
-    _register('s-repeat', function(n, s) {
+    $register('s-repeat', function(n, s) {
         return (new Array(n+1)).join(s);
     });
-    _register('s-concat', function() {
+    $register('s-concat', function() {
         return Array.prototype.slice.call(arguments, 0, -1).join('');
     });
-    _register('s-split', function(sep, s) {
+    $register('s-split', function(sep, s) {
         return s.split(sep);
     });
-    _register('s-slice', function(s, from, to, options) {
+    $register('s-slice', function(s, from, to, options) {
         return s.slice(to && from, options && to);
     });
-    _register('s-reverse', function(s) {
+    $register('s-reverse', function(s) {
         return s.split('').reverse().join('');
     });
-    _register('s-replace', function(old, nu, s, regOpts, options) {
+    $register('s-replace', function(old, nu, s, regOpts, options) {
         return s.replace(new RegExp(old, options && regOpts), nu);
     });
-    _register('s-match', function(regex, s, regOpts, options) {
+    $register('s-match', function(regex, s, regOpts, options) {
         return s.match(new RegExp(regex, options && regOpts));
     });
-    _register('s-lowercase', function(s) {
+    $register('s-lowercase', function(s) {
         return s.toLowerCase();
     });
-    _register('s-uppercase', function(s) {
+    $register('s-uppercase', function(s) {
         return s.toUpperCase();
     });
 
     //predicates
-    _register('s-lowercase?', function(s) {
+    $register('s-lowercase?', function(s) {
         return s.toLowerCase() === s;
     });
-    _register('s-uppercase?', function(s) {
+    $register('s-uppercase?', function(s) {
         return s.toUpperCase() === s;
     });
-    _register('s-match?', function(regex, s, regOpts, options) {
+    $register('s-match?', function(regex, s, regOpts, options) {
         return (new RegExp(regex, options && regOpts)).test(s);
     });
-    _register('s-contain?', function(needle, s, ignoreCase) {
+    $register('s-contain?', function(needle, s, ignoreCase) {
         needle = (ignoreCase) ? needle.toLowerCase(): needle;
         s = (ignoreCase) ? s.toLowerCase(): s;
 
         return s.indexOf(needle) >= 0;
     });
-    _register('s-start-with?', function(prefix, s, ignoreCase) {
+    $register('s-start-with?', function(prefix, s, ignoreCase) {
         prefix = (ignoreCase) ? prefix.toLowerCase(): prefix;
         s = (ignoreCase) ? s.toLowerCase(): s;
 
         return s.indexOf(prefix) === 0;
     });
-    _register('s-end-with?', function(suffix, s, ignoreCase) {
+    $register('s-end-with?', function(suffix, s, ignoreCase) {
         suffix = (ignoreCase) ? suffix.toLowerCase(): suffix;
         s = (ignoreCase) ? s.toLowerCase(): s;
 
