@@ -62,6 +62,14 @@ describe('dash', function () {
             expect(helper(15, list, options)).to.not.equal(list);
         });
 
+        it('-filter', function () {
+            var helper = mock.helper('-filter');
+
+            var list = _.range(1,20);
+            expect(helper('n-even?', list, options)).to.deep.equal(_.range(2, 20, 2));
+            expect(helper('n-even?', list, options)).to.not.equal(list);
+        });
+
         it('-take-while', function () {
             var helper = mock.helper('-take-while');
 
