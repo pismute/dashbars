@@ -256,6 +256,8 @@ describe('dash', function () {
             var list = [1,2,3];
             expect(helper(list, [4,5,6], options)).to.deep.equal([1,2,3,4,5,6]);
             expect(helper(list, [4,5,6], options)).to.not.equal(list);
+
+            expect(helper([1,2,3], [1,2,3], [1,2,3], options)).to.deep.equal([1,2,3,1,2,3,1,2,3]);
         });
 
         it('-difference', function () {
