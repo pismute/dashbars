@@ -29,8 +29,8 @@ var d = function d($register, $helper){
     $register('d-now', function() {
         return new Date();
     });
-    $register('d-parse', function(format, d) {
-        return _moment()(d, format).toDate();
+    $register('d-date', function(format, s) {
+        return _moment()(s, format).toDate();
     });
     $register('d-add', function(n, unit, d) {
         return _moment()(d).add(n, unit).toDate();
@@ -337,7 +337,7 @@ var n = function n($register, $helper){
         return left*right;
     });
 
-    $register('n-devide', function(left, right) {
+    $register('n-divide', function(left, right) {
         return left/right;
     });
 };
@@ -438,7 +438,7 @@ var s = function s($register, $helper){
         return s.replace(new RegExp(old, options && regOpts), nu);
     });
     $register('s-match', function(regex, s, regOpts, options) {
-        return s.match(new RegExp(regex, options && regOpts));
+        return s.match(new RegExp(regex, options && regOpts)) || [];
     });
     $register('s-lowercase', function(s) {
         return s.toLowerCase();
