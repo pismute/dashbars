@@ -30,8 +30,8 @@ describe('date', function () {
             expect(helper(options)).to.be.instanceof(Date);
         });
 
-        it('d-parse', function () {
-            var helper = mock.helper('d-parse');
+        it('d-date', function () {
+            var helper = mock.helper('d-date');
 
             expect(helper('YYYY-MM-DD HH:mm:ss Z', '1970-01-01 00:00:00 +0000', options).valueOf()).to.equal(0);
         });
