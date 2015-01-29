@@ -54,6 +54,7 @@ describe('file', function () {
 
             expect(helper('/path/to/filename.ext', options)).to.equal('/path/to/filename');
             expect(helper('filename.ext', options)).to.equal('filename');
+            expect(helper('/path/to/filename.ext.ex2', options)).to.equal('/path/to/filename.ext');
         });
 
         it('f-relative', function () {
