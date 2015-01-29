@@ -1,5 +1,3 @@
-# Dashbars Readme
-
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-url]][daviddm-image] [![Coverage Status][coverall-image]][coverall-url]
 
 > A modern helper library. Much inspired by [dash.el][] and [s.el][], [f.el][], [handlebars-helpers][].
@@ -47,9 +45,6 @@ $ bower install --save dashbars
 
 #### Usage
 
-
-Node:
-
 ```js
 //node
 var handlebars = require('handlebars');
@@ -57,12 +52,14 @@ var handlebars = require('handlebars');
 require('dashbars').help(handlebars);
 ```
 
-```js
+```html
 //broswer
 <script src="path/to/handlebars"></script>
 <script src="path/to/dashbars"></script>
 
-Dashbars.help(Handlebars);
+<script>
+    Dashbars.help(Handlebars);
+</script>
 ```
 
 To use multiple instances, dashbars support all of them:
@@ -76,16 +73,18 @@ require('dashbars').create().help(handlebars1);
 require('dashbars').create().help(handlebars2);
 ```
 
-```js
+```html
 //broswer
 <script src="path/to/handlebars"></script>
 <script src="path/to/dashbars"></script>
 
-var handlebars1 = Handlebars.create();
-var handlebars2 = Handlebars.create();
+<script>
+    var handlebars1 = Handlebars.create();
+    var handlebars2 = Handlebars.create();
 
-Dashbars.create().help(handlebars1);
-Dashbars.create().help(handlebars2);
+    Dashbars.create().help(handlebars1);
+    Dashbars.create().help(handlebars2);
+</script>
 ```
 
 ## Helpers
@@ -214,10 +213,10 @@ Functions transforming the input list into a list of lists for easy iteration.
 
 #### Predicate:
 
-- [-every?](#-every?-pred-list) `(pred, list)`
-- [-some?](#-some?-pred-list) `(pred, list)`
-- [-none?](#-none?-pred-list) `(pred, list)`
-- [-contain?](#-contain?-item-list) `(item, list)`
+- [-every?](#-every-pred-list) `(pred, list)`
+- [-some?](#-some-pred-list) `(pred, list)`
+- [-none?](#-none-pred-list) `(pred, list)`
+- [-contain?](#-contain-item-list) `(item, list)`
 
 #### Set operation:
 
@@ -242,7 +241,7 @@ Operations on dictionaries.
 
 #### Function:
 
-Functions combine
+Combinational functions, a little bit experimental:
 
 - [-as-is](#-as-is-o) `(o)`
 - [-partial](#-partial-fn-...) `(fn, ...)`
@@ -257,7 +256,8 @@ Functions combine
 
 #### Predicate:
 
-- [n-even?](#n-even?-n) `(n)`
+- [n-even?](#n-even-n) `(n)`
+- [n-odd?](#n-odd-n) `(n)`
 
 #### Operation:
 
@@ -284,12 +284,12 @@ Functions combine
 
 #### Predicates:
 
-- [s-lowercase?](#s-lowercase?-s) `(s)`
-- [s-uppercase?](#s-uppercase?-s) `(s)`
-- [s-match?](#s-match?-regex-s-regopts) `(regex, s, regOpts)`
-- [s-contain?](#s-contain?-needle-s-ignorecase) `(needle, s, ignoreCase)`
-- [s-start-with?](#s-start-with?-prefix-s-igrnorecase) `(prefix, s, ignoreCase)`
-- [s-end-with?](#s-end-with?-suffix-s-ignorecase) `(suffix, s, ignoreCase)`
+- [s-lowercase?](#s-lowercase-s) `(s)`
+- [s-uppercase?](#s-uppercase-s) `(s)`
+- [s-match?](#s-match-regex-s-regopts-1) `(regex, s, regOpts)`
+- [s-contain?](#s-contain-needle-s-ignorecase-1) `(needle, s, ignoreCase)`
+- [s-start-with?](#s-start-with-prefix-s-igrnorecase) `(prefix, s, ignoreCase)`
+- [s-end-with?](#s-end-with-suffix-s-ignorecase) `(suffix, s, ignoreCase)`
 
 ### Files, Paths, IOs
 
@@ -319,12 +319,18 @@ Date helpers are developed on [momentjs][]. See [the documentation](http://momen
 - [d-iso](#d-iso-d) `(d)`
 - [d-format](#d-format-format-d) `(format, d)`
 - [d-now](#d-now) `()`
-- [d-date](#d-date-format-s) `(format, s)`
+- [d-date](#d-date-format-d) `(format, d)`
 - [d-add](#d-add-n-unit-d) `(n, unit, d)`
 - [d-subtract](#d-subtract-n-unit-d) `(n, unit, d)`
 
-<script>
-window.data = {
+## API
+
+Functions and Helpers
+
+Template Data:
+
+```
+{
     funct0: function(){},
     funct1: function(){ return 1;},
     objec0: {},
@@ -344,7 +350,546 @@ window.data = {
     numbe0: 0,
     numbe1: 1
 }
-</script>
+```
+### Common Predicates
+
+##### -is? `(o)`
+
+Function returns false when `o` is falsey value, otherwise returns true.
+
+```
+{{-is? false}} // => false
+{{-is? null}} // => false
+{{-is? undefined}} // => false
+{{-is? 0}} // => false
+{{-is? ''}} // => false
+
+{{-is? true}} // => true
+{{-is? 'undefined'}} // => true
+{{-is? 1}} // => true
+
+{{-is? false0}} // => false
+{{-is? strin0}} // => false
+{{-is? numbe0}} // => false
+
+{{-is? truee0}} // => true
+{{-is? funct0}} // => true
+{{-is? objec0}} // => true
+{{-is? array0}} // => true
+{{-is? strin1}} // => true
+```
+
+##### -and? `(...)`
+
+```
+{{-and? true false}} // => false
+{{-and? true true}} // => true
+{{-and? true true 0}} // => false
+{{-and? true true 1}} // => true
+```
+
+##### -or? `(...)`
+
+```
+{{-or? true false}} // => true
+{{-or? false false}} // => false
+{{-or? false false 0}} // => false
+{{-or? false false 1}} // => true
+```
+
+##### -not? `(boolean)`
+
+```
+{{-not? true}} // => false
+{{-not? false}} // => true
+{{-not? 0}} // => true
+{{-not? 1}} // => false
+```
+
+##### -gt? `(left, right)`
+
+```
+{{-gt? 1 2}} // => false
+{{-gt? 2 2}} // => false
+{{-gt? 2 1}} // => true
+{{-gt? 'a' 'b'}} // => false
+{{-gt? 'a' 'a'}} // => false
+{{-gt? 'b' 'a'}} // => true
+```
+
+##### -lt? `(left, right)`
+
+```
+{{-lt? 1 2}} // => true
+{{-lt? 2 2}} // => false
+{{-lt? 2 1}} // => false
+{{-lt? 'a' 'b'}} // => true
+{{-lt? 'a' 'a'}} // => false
+{{-lt? 'b' 'a'}} // => false
+```
+
+##### -ge? `(left, right)`
+
+```
+{{-ge? 1 2}} // => false
+{{-ge? 2 2}} // => true
+{{-ge? 2 1}} // => true
+{{-ge? 'a' 'b'}} // => false
+{{-ge? 'a' 'a'}} // => true
+{{-ge? 'b' 'a'}} // => true
+```
+
+##### -le? `(left, right)`
+
+```
+{{-le? 1 2}} // => true
+{{-le? 2 2}} // => true
+{{-le? 2 1}} // => false
+{{-le? 'a' 'b'}} // => true
+{{-le? 'a' 'a'}} // => true
+{{-le? 'b' 'a'}} // => false
+```
+
+##### -ne? `(left, right)`
+
+```
+{{-ne? 1 2}} // => true
+{{-ne? 2 2}} // => false
+{{-ne? 'a' 'b'}} // => true
+{{-ne? 'a' 'a'}} // => false
+```
+
+##### -equal? `(left, right)`
+
+equals strictly(`===`)
+
+```
+{{-equal? objec0 objec0}} // => true
+{{-equal? objec0 objec01}} // => false
+```
+
+##### -deep-equal? `(left, right)`
+
+```
+{{-deep-equal? objec1 objec1}} // => true
+{{-deep-equal? objec1 objec11}} // => true
+{{-equal? objec1 objec11}} // => false
+```
+
+##### -in? `(prop, o)`
+
+```
+{{-in? 'objec1' this}} // => true
+{{-in? 'not' this}} // => false
+```
+
+##### -of? `(prop, o)`
+
+'Object.hasOwnProperty()'
+
+```
+{{-of? 'objec1' this}} // => true
+{{-of? 'not' this} // => false
+```
+
+##### -empty? `(o)`
+
+```
+{{-empty? false}} // => true
+{{-empty? null}} // => true
+{{-empty? undefined}} // => true
+{{-empty? 0}} // => true
+{{-empty? ''}} // => true
+
+{{-empty? true}} // => true
+{{-empty? 'undefined'}} // => false
+{{-empty? 1}} // => true
+
+{{-empty? false0}} // => true
+{{-empty? strin0}} // => true
+{{-empty? numbe0}} // => true
+
+{{-empty? truee0}} // => true
+{{-empty? funct0}} // => true
+{{-empty? funct1}} // => true
+{{-empty? objec0}} // => true
+{{-empty? objec1}} // => false
+{{-empty? array0}} // => true
+{{-empty? array1}} // => false
+{{-empty? strin1}} // => false
+```
+
+##### -not-empty? `(o)`
+
+`-not-empty?` equals `{{-not? (-empty something)}}`.
+
+```
+{{-not-empty? false}} // => false
+```
+
+##### -string? `(o)`
+
+```
+{{-string? false}} // => false
+{{-string? 'true'}} // => true
+{{-string? ''}} // => true
+```
+
+##### -array? `(o)`
+
+```
+{{-array? false}} // => false
+{{-array? array0}} // => true
+{{-array? array1}} // => true
+```
+
+### Dash:
+
+##### -map `(fn, list)`
+
+```
+{{-map 'n-even?' (-range 0 5)}} // => [true,false,true,false,true]
+```
+
+##### -sort `(list, compare)`
+
+```
+{{-sort (-range 0 5) '-lt?'}} // => [4,3,2,1,0]
+```
+
+##### -take `(n, list)`
+
+```
+{{-take 3 (-range 0 5)}} // => [0,1,2]
+```
+
+##### -drop `(n, list)`
+
+```
+{{-drop 3 (-range 0 5)}} // => [3,4]
+```
+
+##### -take-while `(pred, list)`
+
+```
+{{-take-while 'n-even?' (-range 0 5)}} // => [0,2,4]
+```
+
+##### -drop-while `(pred, list)`
+
+```
+{{-drop-while 'n-even?' (-range 0 5)}} // => [1,2,3,4]
+```
+
+##### -slice `(list, begin, end)`
+
+```
+{{-slice (-range 0 5) 0 3}} // => false
+```
+
+##### -flatten `(list)`
+
+```
+//[[[0,1,2], [0,1,2]],[0,1,2]]
+{{-flatten (-array (-array (-range 0 3) (-range 0 3)) (-range 0 3))}} // => [[0,1,2],[0,1,2],0,1,2]
+```
+
+##### -deep-flatten `(list)`
+
+```
+//[[[0,1,2], [0,1,2]],[0,1,2]]
+{{-json (-deep-flatten (-array (-array (-range 0 3) (-range 0 3)) (-range 0 3)))}} // => [0,1,2,0,1,2,0,1,2]
+```
+
+#### Cons:
+
+##### -array `(...)`
+
+```
+{{-array (-array (-range 0 3) (-range 0 3)) (-range 0 3)}} // => [[[0,1,2], [0,1,2]],[0,1,2]]
+```
+
+##### -range `(from, to, step)`
+
+```
+{{-range 0 3}} // => [0,1,2]
+```
+
+##### -object `(json)`
+
+```
+{{{-json (-object '{"key":"value"}')}}} // => {"key":"value"}
+```
+
+#### Reduction:
+
+##### -size `(list)`
+
+```
+{{-size (-range 0 3)}} // => 3
+```
+
+##### -find `(pred, list)`
+
+```
+{{-find 'n-odd?' (-range 2 5)}} // => 3
+```
+
+##### -reduce `(fn, initial, list)`
+
+```
+{{-reduce 'n-add' 0 (-range 0 10)}} // => 45
+```
+
+##### -first `(list)`
+
+```
+{{-first (-range 3 10)}} // => 3
+```
+
+##### -last `(list)`
+
+```
+{{-last (-range 3 10)}} // => 9
+```
+
+##### -join `(list, sep)`
+
+```
+{{-join (-range 0 5) '-'}} // => 0-1-2-3-4
+```
+
+##### -sum `(list)`
+
+```
+{{-sum (-range 0 5)}} // => 10
+```
+
+##### -product `(list)`
+
+```
+{{-product (-range 1 5)}} // => 24
+```
+
+##### -min `(list)`
+
+```
+{{-min (-range 0 5)}} // => 0
+```
+
+##### -max `(list)`
+
+```
+{{-max (-range 0 5)}} // => 4
+```
+
+#### Partitioning:
+
+##### -group-by `(fn, list)`
+
+```
+{{{-json (-group-by 'n-even?' (-range 0 5))}}} // => {"true":[0,2,4],"false":[1,3]}
+```
+
+#### Iteration:
+
+##### -grouped `(size, list)`
+
+```
+{{{-json (-grouped 2 (-range 0 5))}}} // => [[0,1],[2,3],[4]]
+```
+
+#### Predicate:
+
+##### -every? `(pred, list)`
+
+```
+{{-every? 'n-even?' (-range 0 5)}} // => false
+{{-every? 'n-even?' (-array 0 2 4 6)}} // => true
+{{-every? 'n-even?' (-array 1 3 5)}} // => false
+{{-every? 'n-even?' (-array)}} // => true
+```
+
+##### -some? `(pred, list)`
+
+```
+{{-some? 'n-even?' (-range 0 5)}} // => true
+{{-some? 'n-even?' (-array 0 2 4 6)}} // => true
+{{-some? 'n-even?' (-array 1 3 5)}} // => false
+{{-some? 'n-even?' (-array)}} // => false
+```
+
+##### -none? `(pred, list)`
+
+```
+{{-none? 'n-even?' (-range 0 5)}} // => false
+{{-none? 'n-even?' (-array 0 2 4 6)}} // => false
+{{-none? 'n-even?' (-array 1 3 5)}} // => true
+{{-none? 'n-even?' (-array)}} // => false
+```
+
+##### -contain? `(item, list)`
+
+```
+{{-contain? 0 (-range 1 5)}} // => false
+{{-contain? 1 (-range 1 5)}} // => true
+```
+
+#### Set operation:
+
+##### -union `(...)`
+
+```
+{{-union (-range 0 5) (-range 0 5)}} // => [0,1,2,3,4,0,1,2,3,4]
+```
+
+##### -difference `(...)`
+
+```
+{{-difference (-range 0 5) (-range 3 8)}} // => [0,1,2]
+```
+
+##### -intersection `(...)`
+
+```
+{{-intersection (-range 0 5) (-range 3 8)}} // => [3,4]
+```
+
+##### -distinct `(list)`
+
+```
+{{-distinct (-array 0 0 1 1 2 2 3 3 4 4 5 5)}} // => [0,1,2,3,4,5]
+```
+
+#### Dictionary:
+
+sample data:
+
+```
+objec2 = {
+    "key":"value",
+    "key2":"value2"
+}
+```
+
+##### -get `(key, dict)`
+
+```
+{{-get 'key' objec2}} // => "value"
+```
+
+##### -keys `(dict)`
+
+```
+{{-keys objec2}} // => ["key", "key2"]
+```
+
+##### -values `(dict)`
+
+```
+{{-values objec2}} // => ["value","value2"]
+```
+
+#### Obejct:
+
+##### -json `(o)`
+
+```
+{{{-json (-range 0 5)}}} // => [1,2,3,4,5]
+{{{-json objec2}}} // => {"key":"value","key2":"value2"}
+```
+
+#### Function:
+
+##### -as-is `(o)`
+
+```
+{{{-as-is (-range 0 5)}}} // => [1,2,3,4,5]
+
+{{{-map '-as-is' (-range 0 5)}}} // => // => [1,2,3,4,5]
+
+{{{-group-by '-as-is' (-range 0 5)}}} // => // => {"0":[0],"1":[1],"2":[2],"3":[3],"4":[4]}
+```
+
+##### -partial `(fn, ...)`
+
+A function returns a partially applied function. You can chain other functions.
+
+```
+{{-filter (-partial '-gt?' 3) (-range 0 5)}} // => [0,1,2]
+```
+
+##### -call `(fn, ...)`
+
+`-call` calls a function at once.
+
+```
+{{{-call (-partial '-gt?' 3) 2}}} // => true
+```
+
+#### Side Effects:
+
+##### -let `(name, value)`
+
+You can define data in current context of Template Data. It is very simple concept, `this[name] = value`.
+It returns an empty string(`''`).
+
+```
+{{{-let 'name' true}}} // => ''
+```
+
+##### -log `(...)`
+
+You can log on console. It is very simple concept, `console.log(...)`.
+It returns an empty string(`''`).
+
+```
+{{{-log 'my log'}}} // => ''
+```
+
+### Number
+
+#### Predicate:
+
+##### n-even? `(n)`
+
+```
+{{{n-even? 0}}} // => true
+{{{n-even? 1}}} // => false
+```
+
+##### n-odd? `(n)`
+
+```
+{{{n-odd? 1}}} // => true
+{{{n-odd? 2}}} // => false
+```
+
+#### Operation:
+
+##### n-add `(left, right)`
+
+```
+{{{n-add 10 5}}} // => 15
+```
+
+##### n-subtract `(left, right)`
+
+```
+{{{n-subtract 10 5}}} // => 5
+```
+
+##### n-multiply `(left, right)`
+
+```
+{{{n-multiply 2 5}}} // => 10
+```
+
+##### n-divide `(left, right)`
+
+```
+{{{n-divide 10 2}}} // => 5
+```
 
 ### String
 
@@ -610,6 +1155,14 @@ A helper returns as date:
 {{{d-subtract 1 'days' dateObject}}} // => date
 {{{d-format 'YYYY-MM-DD' (d-subtract 1 'days' (d-date 'YYYY-MM-DD' '1970-01-02'))}}} // => "1970-01-01"
 ```
+
+## TODO
+
+- supports ES6(iojs)
+  - generator based range.
+  - new Set as list
+  - generator as list
+  - new Map as dictionary.
 
 ## Conventional guide.
 
