@@ -1,6 +1,8 @@
-#  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-url]][daviddm-image] [![Coverage Status][coverall-image]][coverall-url]
+# Dashbars Readme
 
-> A modern helper library for wonderful [Handlebars][]. Much inspired by [dash.el][] and [s.el][], [f.el][], [handlebars-helpers][].
+[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-url]][daviddm-image] [![Coverage Status][coverall-image]][coverall-url]
+
+> A modern helper library. Much inspired by [dash.el][] and [s.el][], [f.el][], [handlebars-helpers][].
 
 [Handlebars]: http://handlebarsjs.com/
 [dash.el]: https://github.com/magnars/dash.el
@@ -8,7 +10,7 @@
 [f.el]: https://github.com/rejeep/f.el
 [handlebars-helpers]: https://github.com/assemble/handlebars-helpers
 
-Dashbars (yet) has no block helper because built-in helpers(each, if, unless) is powerful:
+Dashbars that is a helper collection be able to easily combined with built-in helpers:
 
 ```html
 {{-take 5 (-drop 3 (-range 0 10))}} // [3,4,5,6,7]
@@ -29,32 +31,61 @@ Dashbars (yet) has no block helper because built-in helpers(each, if, unless) is
 
 ## Install & Usage
 
-### Node
+### Install
 
-#### Install
+#### Node
 
 ```sh
 $ npm install --save dashbars
 ```
 
+#### Bower
+
+```sh
+$ bower install --save dashbars
+```
+
 #### Usage
 
-Handlebars:
+
+Node:
 
 ```js
+//node
 var handlebars = require('handlebars');
 
 require('dashbars').help(handlebars);
 ```
 
+```js
+//broswer
+<script src="path/to/handlebars"></script>
+<script src="path/to/dashbars"></script>
+
+Dashbars.help(Handlebars);
+```
+
 To use multiple instances, dashbars support all of them:
 
 ```js
+//node
 var handlebars1 = require('handlebars').create();
 var handlebars2 = require('handlebars').create();
 
 require('dashbars').create().help(handlebars1);
 require('dashbars').create().help(handlebars2);
+```
+
+```js
+//broswer
+<script src="path/to/handlebars"></script>
+<script src="path/to/dashbars"></script>
+
+var handlebars1 = Handlebars.create();
+var handlebars2 = Handlebars.create();
+
+Dashbars.create().help(handlebars1);
+Dashbars.create().help(handlebars2);
 ```
 
 ## Helpers
@@ -85,23 +116,23 @@ You can chain helpers:
 
 There are common predicates for object:
 
-- [-is?](#-is?-o) `(o)`
-- [-and?](#-and?-...) `(...)`
-- [-or?](#-or?-...) `(...)`
-- [-not?](#-not?-boolean) `(boolean)`
-- [-gt?](#-gt?-left-right) `(left, right)`
-- [-lt?](#-lt?-left-right) `(left, right)`
-- [-ge?](#-ge?-left-right) `(left, right)`
-- [-le?](#-le?-left-right) `(left, right)`
-- [-ne?](#-ne?-left-right) `(left, right)`
-- [-equal?](#-equal?-left-right) `(left, right)`
-- [-deep-equal?](#-deep-equal?-left-right) `(left, right)`
-- [-in?](#-in?-prop-o) `(prop, o)`
-- [-of?](#-of?-prop-o) `(prop, o)`
-- [-empty?](#-empty?-o) `(o)`
-- [-not-empty?](#-not-empty?-o) `(o)`
-- [-string?](#-string?-o) `(o)`
-- [-array?](#-array?-o) `(o)`
+- [-is?](#-is-o-) `(o)`
+- [-and?](#-and-...) `(...)`
+- [-or?](#-or-...) `(...)`
+- [-not?](#-not-boolean) `(boolean)`
+- [-gt?](#-gt-left-right) `(left, right)`
+- [-lt?](#-lt-left-right) `(left, right)`
+- [-ge?](#-ge-left-right) `(left, right)`
+- [-le?](#-le-left-right) `(left, right)`
+- [-ne?](#-ne-left-right) `(left, right)`
+- [-equal?](#-equal-left-right) `(left, right)`
+- [-deep-equal?](#-deep-equal-left-right) `(left, right)`
+- [-in?](#-in-prop-o) `(prop, o)`
+- [-of?](#-of-prop-o) `(prop, o)`
+- [-empty?](#-empty-o) `(o)`
+- [-not-empty?](#-not-empty-o) `(o)`
+- [-string?](#-string-o) `(o)`
+- [-array?](#-array-o) `(o)`
 
 ### Dash
 
@@ -262,6 +293,8 @@ Functions combine
 
 ### Files, Paths, IOs
 
+These helpers with files supports only for node.
+
 #### Path:
 
 - [f-slash](#f-slash-path) `(path)`
@@ -283,21 +316,304 @@ Date helpers are developed on [momentjs][]. See [the documentation](http://momen
 
 [momentjs]: http://momentjs.com/
 
-#### Return String:
-
 - [d-iso](#d-iso-d) `(d)`
 - [d-format](#d-format-format-d) `(format, d)`
-
-#### Return Date:
-
 - [d-now](#d-now) `()`
-- [d-parse](#d-parse-format-d) `(format, d)`
+- [d-date](#d-date-format-s) `(format, s)`
 - [d-add](#d-add-n-unit-d) `(n, unit, d)`
 - [d-subtract](#d-subtract-n-unit-d) `(n, unit, d)`
 
-### Conventional guide.
+<script>
+window.data = {
+    funct0: function(){},
+    funct1: function(){ return 1;},
+    objec0: {},
+    objec01: {},
+    objec1: {key:'value'},
+    objec11: {key:'value'},
+    objec2: {
+        key:"value",
+        key2:"value2"
+    },
+    array0: [],
+    array1: [1],
+    truee0: true,
+    false0: false,
+    strin0: '',
+    strin1: 'string',
+    numbe0: 0,
+    numbe1: 1
+}
+</script>
 
-#### Namespace
+### String
+
+##### s-size `(s)`
+
+```
+{{{s-size 'string'}}} // => 6
+```
+
+##### s-trim `(s)`
+
+```
+{{{s-trim ' string '}}} // => 'string'
+```
+
+##### s-take `(n, s)`
+
+```
+{{{s-take 2 'string'}}} // => 'st'
+```
+
+##### s-drop `(n, s)`
+
+```
+{{{s-drop 2 'string'}}} // => 'ring'
+```
+
+##### s-repeat `(n, s)`
+
+```
+{{{s-repeat 2 'string'}}} // => 'stringstring'
+```
+
+##### s-concat `(...)`
+
+```
+{{{s-concat 'st' 'ri' 'ng'}}} // => 'string'
+```
+
+##### s-split `(sep, s)`
+
+```
+{{{s-split ',' 's,t,r,i,n,g'}}} // => ['s','t','r','i','n','g']
+```
+
+##### s-slice `(s, from, to)`
+
+```
+{{{s-slice 'string' 1 4}}} // => 'tri'
+{{{s-slice 'string' 1}}} // => 'tring'
+{{{s-slice 'string'}}} // => 'string'
+{{{s-slice 'string' 0 -1}}} // => 'strin'
+```
+
+##### s-reverse `(s)`
+
+```
+{{{s-reverse 'string'}}} // => 'gnirts'
+```
+
+##### s-replace `(old, new, s, regOpts)`
+
+```
+{{{s-replace 'str' 'int' 'string string STRING'}}} // => "inting string STRING"
+{{{s-replace 'str' 'int' 'string string STRING' 'g'}}} // => "inting inting STRING"
+{{{s-replace 'str' 'int' 'string string STRING' 'gi'}}} // => "inting inting intING"
+```
+
+##### s-match `(regex, s, regOpts)`
+
+```
+{{{s-match 's.+?i' 'string string STRING'}}} // => ["stri"]
+{{{s-match 's.+?i' 'string string STRING' 'g'}}} // => ["stri","stri"]
+{{{s-match 's.+?i' 'string string STRING' 'gi'}}} // => ["stri","stri","STRI"]
+{{{s-match 'si' 'string string STRING' 'gi')}}} // => []
+```
+
+##### s-lowercase `(s)`
+
+```
+{{{s-lowercase 'STRing'}}} // => 'string'
+```
+
+##### s-uppercase `(s)`
+
+```
+{{{s-uppercase 'STRing'}}} // => 'STRING'
+```
+
+#### Predicates:
+
+##### s-lowercase? `(s)`
+
+```
+{{{s-lowercase? 'STRING'}}} // => false
+{{{s-lowercase? 'STRing'}}} // => false
+{{{s-lowercase? 'string'}}} // => true
+```
+
+##### s-uppercase? `(s)`
+
+```
+{{{s-uppercase? 'STRING'}}} // => true
+{{{s-uppercase? 'STRing'}}} // => false
+{{{s-uppercase? 'string'}}} // => false
+```
+
+##### s-match? `(regex, s, regOpts)`
+
+```
+{{{s-match? '.*r' 'string'}}} // => true
+{{{s-match? 'g.*r' 'string'}}} // => false
+```
+
+##### s-contain? `(needle, s, ignoreCase)`
+
+```
+{{{s-contain? 'str' 'string'}}} // => true
+{{{s-contain? 'gnitrs' 'string'}}} // => false
+```
+
+##### s-start-with? `(prefix, s, ignoreCase)`
+
+```
+{{{s-start-with? 'str' 'string'}}} // => true
+{{{s-start-with? 'tri' 'string'}}} // => false
+```
+
+##### s-end-with? `(suffix, s, ignoreCase)`
+
+```
+{{{s-end-with? 'ing' 'string'}}} // => true
+{{{s-end-with? 'rin' 'string'}}} // => false
+```
+
+### Files, Paths, IOs
+
+You can use these helpers in server-side only, which require node's library.
+
+#### Path:
+
+##### f-slash `(path)`
+
+You can easily ensure to end with slash(`/`).
+
+```
+{{{f-slash 'path/to'}}} // => "path/to/"
+{{{f-slash 'path/to/'}}} // => "path/to/"
+```
+
+##### f-join `(...)`
+
+```
+{{{f-join '/path/' '/to/' 'filename.ext' }}} // => "/path/to/filename.ext"
+```
+
+##### f-split `(path)`
+
+```
+{{{f-split '/path//to/filename.ext/')}}} // => ["path","to","filename.ext"]
+```
+
+##### f-dirname `(path)`
+
+```
+{{{f-dirname '/path/to/filename.ext'}}} // => "/path/to/"
+```
+
+##### f-basename `(path, ext)`
+
+```
+{{{f-basename '/path/to/filename.ext'}}} // => "filename.ext"
+{{{f-basename '/path/to/filename.ext' '.ext'}}} // => "filename"
+```
+
+##### f-extname `(path)`
+
+```
+{{{f-extname '/path/to/filename.ext'}}} // => ".ext"
+{{{f-extname 'filename.ext'}}} // => ".ext"
+```
+
+##### f-drop-extname `(path)`
+
+```
+{{{f-drop-extname '/path/to/filename.ext'}}} // => "/path/to/filename"
+{{{f-drop-extname '/path/to/filename.ext.ex2'}}} // => "/path/to/filename.ext"
+{{{f-drop-extname 'filename.ext'}}} // => "filename"
+```
+
+##### f-relative `(...)`
+
+```
+{{{f-relative '/orandea/test/aaa' '/orandea/impl/bbb'}}} // => "../../impl/bbb"
+```
+
+#### IOs:
+
+##### f-read-text `(path, encoding)`
+
+simple.txt:
+
+```
+first
+second
+```
+
+```
+{{{f-read-text 'simple.txt'}}} // => "first\nsecond"
+{{{f-read-text 'simple.txt' 'utf8'}}} // => "first\nsecond"
+```
+
+### Date
+
+Date heleprs requires [momentjs][].
+
+##### d-iso `(d)`
+
+A helper returns date as iso string:
+
+```
+{{{d-iso (d-now)}}} // => "2015-01-29T04:08:32.234Z"
+```
+
+##### d-format `(format, d)`
+
+A helper returns date as string:
+
+```
+{{{d-format 'YYYY-MM-DD' (d-date 'YYYY-MM-DD' '1970-01-01')}}} // => "1970-01-01"
+```
+
+##### d-now `()`
+
+A helper returns now as date:
+
+```
+{{{d-now}}} // => now
+```
+
+##### d-date `(format, s)`
+
+A helper returns as date:
+
+```
+{{{d-date 'YYYY-MM-DD HH:mm:ss Z' '1970-01-01 00:00:00 +0000'}}} // => date
+```
+
+##### d-add `(n, unit, d)`
+
+A helper returns as date:
+
+```
+{{{d-add 1 'days' dateObject}}} // => date
+{{{d-format 'YYYY-MM-DD' (d-add 1 'days' (d-date 'YYYY-MM-DD' '1970-01-01'))}}} // => "1970-01-02"
+```
+
+##### d-subtract `(n, unit, d)`
+
+A helper returns as date:
+
+```
+{{{d-subtract 1 'days' dateObject}}} // => date
+{{{d-format 'YYYY-MM-DD' (d-subtract 1 'days' (d-date 'YYYY-MM-DD' '1970-01-02'))}}} // => "1970-01-01"
+```
+
+## Conventional guide.
+
+### Namespace
 
 Start with:
 
@@ -306,12 +622,12 @@ Start with:
 - `d-`: Date functions
 - `s-`: String functions
 
-#### Predicate
+### Predicate
 
-- Predicate should return real boolean(not falsy/truey values)
+- Predicate should return real boolean(not falsey/truey values)
 - The name of predicate should end with question mark('?')
 
-#### Arguments
+### Arguments
 
 - Mandatory arguments should be before target object, but Optional arguments should be after target object. Let's see [s-replace](#s-replace-old-new-regopts):
 
