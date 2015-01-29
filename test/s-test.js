@@ -76,6 +76,7 @@ describe('strings', function () {
             var helper = mock.helper('s-match');
 
             expect(helper('r', 'reverse', 'g', options)).to.deep.equal(['r', 'r']);
+            expect(helper('si', 'string', options)).to.deep.equal([]);
         });
 
         it('s-lowercase', function () {
