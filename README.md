@@ -127,7 +127,7 @@ There are common predicates for object:
 - [-equal?](#-equal-left-right) `(left, right)`
 - [-deep-equal?](#-deep-equal-left-right) `(left, right)`
 - [-in?](#-in-prop-o) `(prop, o)`
-- [-of?](#-of-prop-o) `(prop, o)`
+- [-has?](#-has-prop-o) `(prop, o)`
 - [-empty?](#-empty-o) `(o)`
 - [-not-empty?](#-not-empty-o) `(o)`
 - [-string?](#-string-o) `(o)`
@@ -483,13 +483,13 @@ equals strictly(`===`)
 {{-in? 'not' this}} // => false
 ```
 
-##### -of? `(prop, o)`
+##### -has? `(prop, o)`
 
 'Object.hasOwnProperty()'
 
 ```
-{{-of? 'objec1' this}} // => true
-{{-of? 'not' this} // => false
+{{-has? 'objec1' this}} // => true
+{{-has? 'not' this} // => false
 ```
 
 ##### -empty? `(o)`

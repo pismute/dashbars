@@ -121,8 +121,8 @@ describe('predicates', function () {
         expect(helper('notfound', sub, options)).to.be.false();
     });
 
-    it('-of?', function () {
-        var helper = mock.helper('-of?');
+    it('-has?', function () {
+        var helper = mock.helper('-has?');
 
         expect(helper('sub', sub, options)).to.be.true();
         expect(helper('super', sub, options)).to.be.false();
