@@ -386,7 +386,7 @@ var p = function p($register, $helper){
     $register('-in?', function(prop, o) {
         return prop in o;
     });
-    $register('-of?', function(prop, o) {
+    $register('-has?', function(prop, o) {
         return Object.prototype.hasOwnProperty.call(o, prop);
     });
     $register('-empty?', function(o){
