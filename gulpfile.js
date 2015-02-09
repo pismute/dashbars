@@ -1,7 +1,12 @@
 'use strict';
 
 var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
+var $ = require('gulp-load-plugins')(
+    {
+        rename:{
+            'gulp-6to5': 'to5'
+        }
+    });
 var seq = require('run-sequence');
 
 gulp.task('bump', function(){
@@ -29,6 +34,7 @@ gulp.task('scripts', function(done){
 gulp.task('scripts:browser', function(){
     return gulp.src(['lib/**/*.js', '!lib/f.js'])
         .pipe($.using())
+        .pipe($.to5())
         .pipe($.wrap('//<%= file.relative %>\n<%= contents %>\n'))
         .pipe($.concat('dashbars.js'))
         .pipe($.wrap({src:'lib/wrap.js.txt'}, {modules:'dash, p, s, n, d'}))
@@ -43,6 +49,7 @@ gulp.task('scripts:browser', function(){
 gulp.task('scripts:npm', function(){
     return gulp.src('lib/**/*.js')
         .pipe($.using())
+        .pipe($.using())
         .pipe($.wrap('//<%= file.relative %>\n<%= contents %>\n'))
         .pipe($.concat('index.js'))
         .pipe($.wrap({src:'lib/wrap.js.txt'}, {modules:'dash, p, s, n, d, f'}))
@@ -55,7 +62,7 @@ gulp.task('clean', function(done) {
 });
 
 gulp.task('lint', function(){
-    return gulp.src(['gulpfile.js', 'dist/**/*.js', '!**/*.min.js'])
+    return gulp.src(['lib/**/*.js'])
         .pipe($.jshint('.jshintrc'))
         .pipe($.jshint.reporter('default'));
 });
