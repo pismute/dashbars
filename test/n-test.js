@@ -12,16 +12,16 @@ describe('n', function () {
         it('n-even?', function () {
             var helper = mock.helper('n-even?');
 
-            expect(helper(2, options)).to.be.true();
-            expect(helper(1, options)).to.be.false();
-            expect(helper(0, options)).to.be.true();
+            expect(helper(2, options)).to.be.true;
+            expect(helper(1, options)).to.be.false;
+            expect(helper(0, options)).to.be.true;
         });
         it('n-odd?', function () {
             var helper = mock.helper('n-odd?');
 
-            expect(helper(2, options)).to.be.false();
-            expect(helper(1, options)).to.be.true();
-            expect(helper(0, options)).to.be.false();
+            expect(helper(2, options)).to.be.false;
+            expect(helper(1, options)).to.be.true;
+            expect(helper(0, options)).to.be.false;
         });
     });
 

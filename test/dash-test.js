@@ -125,10 +125,10 @@ describe('dash', function () {
             expect(helper(5, options)).to.deep.equal([0,1,2,3,4]);
             expect(helper(0, 5, options)).to.deep.equal([0,1,2,3,4]);
             expect(helper(0, 5, 2, options)).to.deep.equal([0,2,4]);
-            expect(helper(0, -5, options)).to.be.empty();
+            expect(helper(0, -5, options)).to.be.empty;
             expect(helper(0, -5, -1, options)).to.deep.equal([0,-1,-2,-3,-4]);
             expect(helper(0, -5, -2, options)).to.deep.equal([0,-2,-4]);
-            expect(helper(0, options)).to.be.empty();
+            expect(helper(0, options)).to.be.empty;
         });
 
         it('-object', function () {
@@ -231,29 +231,29 @@ describe('dash', function () {
         it('-every?', function () {
             var helper = mock.helper('-every?');
 
-            expect(helper('n-even?', _.range(0,11), options)).to.be.false();
-            expect(helper('n-even?', _.range(0,11,2), options)).to.be.true();
+            expect(helper('n-even?', _.range(0,11), options)).to.be.false;
+            expect(helper('n-even?', _.range(0,11,2), options)).to.be.true;
         });
 
         it('-some?', function () {
             var helper = mock.helper('-some?');
 
-            expect(helper('n-even?', _.range(0,11), options)).to.be.true();
-            expect(helper('n-even?', _.range(1,11,2), options)).to.be.false();
+            expect(helper('n-even?', _.range(0,11), options)).to.be.true;
+            expect(helper('n-even?', _.range(1,11,2), options)).to.be.false;
         });
 
         it('-none?', function () {
             var helper = mock.helper('-none?');
 
-            expect(helper('n-even?', _.range(0,11), options)).to.be.false();
-            expect(helper('n-even?', _.range(1,11,2), options)).to.be.true();
+            expect(helper('n-even?', _.range(0,11), options)).to.be.false;
+            expect(helper('n-even?', _.range(1,11,2), options)).to.be.true;
         });
 
         it('-contain?', function () {
             var helper = mock.helper('-contain?');
 
-            expect(helper(0, _.range(0,11), options)).to.be.true();
-            expect(helper(11, _.range(0,11), options)).to.be.false();
+            expect(helper(0, _.range(0,11), options)).to.be.true;
+            expect(helper(11, _.range(0,11), options)).to.be.false;
         });
     });
 
@@ -303,14 +303,14 @@ describe('dash', function () {
         it('-keys', function () {
             var helper = mock.helper('-keys');
 
-            expect(helper({}, options)).to.be.empty();
+            expect(helper({}, options)).to.be.empty;
             expect(helper({foo:1, bar:2}, options)).to.deep.equal(['foo','bar']);
         });
 
         it('-values', function () {
             var helper = mock.helper('-values');
 
-            expect(helper({}, options)).to.be.empty();
+            expect(helper({}, options)).to.be.empty;
             expect(helper({foo:1, bar:2}, options)).to.deep.equal([1,2]);
         });
     });

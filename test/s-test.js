@@ -97,43 +97,43 @@ describe('strings', function () {
         it('s-lowercase?', function () {
             var helper = mock.helper('s-lowercase?');
 
-            expect(helper('lowercase', options)).to.be.true();
-            expect(helper('Lowercase', options)).to.be.false();
+            expect(helper('lowercase', options)).to.be.true;
+            expect(helper('Lowercase', options)).to.be.false;
         });
 
         it('s-uppercase?', function () {
             var helper = mock.helper('s-uppercase?');
 
-            expect(helper('UPPERCASE', options)).to.be.true();
-            expect(helper('Uppercase', options)).to.be.false();
+            expect(helper('UPPERCASE', options)).to.be.true;
+            expect(helper('Uppercase', options)).to.be.false;
         });
 
         it('s-match?', function () {
             var helper = mock.helper('s-match?');
 
-            expect(helper('[a-z]+', 'match', options)).to.be.true();
-            expect(helper('[a-z]+', 'MatcH', 'i', options)).to.be.true();
+            expect(helper('[a-z]+', 'match', options)).to.be.true;
+            expect(helper('[a-z]+', 'MatcH', 'i', options)).to.be.true;
         });
 
         it('s-contain?', function () {
             var helper = mock.helper('s-contain?');
 
-            expect(helper('tai', 'contain', options)).to.be.true();
-            expect(helper('iai', 'contain', options)).to.be.false();
+            expect(helper('tai', 'contain', options)).to.be.true;
+            expect(helper('iai', 'contain', options)).to.be.false;
         });
 
         it('s-start-with', function () {
             var helper = mock.helper('s-start-with?');
 
-            expect(helper('sta', 'start-with', options)).to.be.true();
-            expect(helper('tar', 'start-with', options)).to.be.false();
+            expect(helper('sta', 'start-with', options)).to.be.true;
+            expect(helper('tar', 'start-with', options)).to.be.false;
         });
 
         it('s-end-with?', function () {
             var helper = mock.helper('s-end-with?');
 
-            expect(helper('.js', 'end-with.js', options)).to.be.true();
-            expect(helper('.css', 'end-with.js', options)).to.be.false();
+            expect(helper('.js', 'end-with.js', options)).to.be.true;
+            expect(helper('.css', 'end-with.js', options)).to.be.false;
         });
     });
 });
