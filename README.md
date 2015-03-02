@@ -53,7 +53,7 @@ require('dashbars').help(handlebars);
 ```
 
 ```html
-//broswer
+//browser
 <script src="path/to/handlebars"></script>
 <script src="path/to/dashbars"></script>
 
@@ -74,7 +74,7 @@ require('dashbars').create().help(handlebars2);
 ```
 
 ```html
-//broswer
+//browser
 <script src="path/to/handlebars"></script>
 <script src="path/to/dashbars"></script>
 
@@ -790,7 +790,7 @@ objec2 = {
 {{-values objec2}} // => ["value","value2"]
 ```
 
-#### Obejct:
+#### Object:
 
 ##### -json `(o)`
 
@@ -1104,7 +1104,7 @@ second
 
 ### Date
 
-Date heleprs requires [momentjs][].
+Date helpers requires [momentjs][].
 
 ##### d-iso `(d)`
 
