@@ -1,12 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
-var $ = require('gulp-load-plugins')(
-    {
-        rename:{
-            'gulp-6to5': 'to5'
-        }
-    });
+var $ = require('gulp-load-plugins')();
 var seq = require('run-sequence');
 
 gulp.task('bump', function(){
@@ -34,7 +29,6 @@ gulp.task('scripts', function(done){
 gulp.task('scripts:browser', function(){
     return gulp.src(['lib/**/*.js', '!lib/f.js'])
         .pipe($.using())
-        .pipe($.to5())
         .pipe($.wrap('//<%= file.relative %>\n<%= contents %>\n'))
         .pipe($.concat('dashbars.js'))
         .pipe($.wrap({src:'lib/wrap.js.txt'}, {modules:'dash, p, s, n, d'}))
