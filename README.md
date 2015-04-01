@@ -174,7 +174,8 @@ Handlebars.registerHelper('n-even?', function(n){
 - [-take-while](#-take-while-pred-list) `(pred, list)`
 - [-drop-while](#-drop-while-pred-list) `(pred, list)`
 - [-slice](#-slice-list-begin-end) `(list, begin, end)`
-- [-flatten](#-flatten-list-deep) `(list, deep)`
+- [-flatten](#-flatten-list) `(list)`
+- [-deep-flatten](#-deep-flatten-list) `(list)`
 
 #### Cons:
 
