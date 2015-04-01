@@ -62,7 +62,7 @@ require('dashbars').help(handlebars);
 </script>
 ```
 
-To use multiple instances, dashbars support all of them:
+To use multiple instances, dashbars support all them:
 
 ```js
 //node
@@ -135,7 +135,7 @@ There are common predicates for object:
 
 ### Dash
 
-List and Dictionary are abstract term. List demonstrates Array and Set of ES6, somethings which are iterable like list. Dictionary also demonstrates plain JavaScript Object and Map of ES6, somethings which are key-value data structure.
+List and Dictionary are abstract term. List demonstrates Array and Set of ES6, somethings which are iterable like list. Dictionary demonstrates plain JavaScript Object and Map of ES6, something which are key-value data structure.
 
 As of now, dashbars tested and supports ES5 only so that List is Array and Dictionary is plain Object.
 
@@ -242,7 +242,7 @@ Operations on dictionaries.
 
 #### Function:
 
-Combinational functions, a little bit experimental:
+Combinational functions, a bit experimental:
 
 - [-as-is](#-as-is-o) `(o)`
 - [-partial](#-partial-fn-...) `(fn, ...)`
@@ -832,7 +832,7 @@ A function returns a partially applied function. You can chain other functions.
 
 ##### -let `(name, value)`
 
-You can define data in current context of Template Data. It is very simple concept, `this[name] = value`.
+You can define data in current context of Template Data. It is simple concept, `this[name] = value`.
 It returns an empty string(`''`).
 
 ```
@@ -841,7 +841,7 @@ It returns an empty string(`''`).
 
 ##### -log `(...)`
 
-You can log on console. It is very simple concept, `console.log(...)`.
+You can log on console. It is simple concept, `console.log(...)`.
 It returns an empty string(`''`).
 
 ```

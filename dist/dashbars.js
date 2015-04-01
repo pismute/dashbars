@@ -13,8 +13,8 @@ var _moment = function(){
     return (typeof window === 'undefined')? require('moment'): window.moment;
 };
 
+// jshint unused:false
 var d = function d($register, $helper){
-    $helper = $helper; // for lint
 
     //return string
     $register('d-iso', function(d) {
@@ -41,6 +41,7 @@ var d = function d($register, $helper){
 };
 
 //dash.js
+// jshint unused:false
 var dash = function dash($register, $helper){
     //List
     $register('-map', function(fn, list) {
@@ -244,17 +245,12 @@ var _helper = function(name){
 };
 
 var _emptyHelpable = {
+    // jshint unused:false
     registerHelper: function(name, func){
-        //for lint
-        name = name;
-        func = func;
-
         return this;
     },
+    // jshint unused:false
     helper: function(name){
-        //for lint
-        name = name;
-
         return function(){};
     }
 };
@@ -288,7 +284,8 @@ var _create = function(){
     return _cons(this._registerers);
 };
 
-var _cons = function(){
+// jshint latedef:false
+var _cons = function (){
     var args = _().flatten(Array.prototype.slice.call(arguments), true);
     var dashbars = {
         _registerers: [],
@@ -308,13 +305,14 @@ var _cons = function(){
 };
 
 //global.js
+// jshint unused:false
 var _ = function(){
     return (typeof window === 'undefined')? require('lodash'): window._;
 };
 
 //n.js
+// jshint unused:false
 var n = function n($register, $helper){
-    $helper = $helper; // for lint
 
     //Predicate
     $register('n-even?', function(n) {
@@ -347,8 +345,8 @@ var _is = function(o){
     return !!o;
 };
 
+// jshint unused:false
 var p = function p($register, $helper){
-    $helper = $helper; // for lint
 
     $register('-is?', _is);
     $register('-and?', function() {
@@ -404,9 +402,8 @@ var p = function p($register, $helper){
 };
 
 //s.js
+// jshint unused:false
 var s = function s($register, $helper){
-    $helper = $helper; // for lint
-
     $register('s-size', function(s) {
         return s.length;
     });
