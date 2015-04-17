@@ -87,6 +87,11 @@ require('dashbars').create().help(handlebars2);
 </script>
 ```
 
+In the browser, you make sure dependencies required, which are [lodash][] and [momentjs][]. Dashbars depends on them. You must load them before using Dashbars. but If you do not use date(`d-xxx`) helpers, you can drop [momentjs][].
+
+[lodash]: https://lodash.com/
+[momentjs]: http://momentjs.com/
+
 ## Helpers
 
 ### Common predicate
