@@ -31,6 +31,10 @@ Dashbars that is a helper collection be able to easily combined with built-in he
 
 ### Install
 
+#### CDN
+
+A free CDN is available at [jsDelivr](http://www.jsdelivr.com/#!dashbars). Advanced usage, such as [version aliasing & concocting](https://github.com/jsdelivr/jsdelivr#usage), is available.
+
 #### Node
 
 ```sh
