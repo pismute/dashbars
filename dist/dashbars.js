@@ -56,11 +56,11 @@ var dash = function dash($register, $helper){
     $register('-drop', function(n, list) {
        return list.slice(n);
     });
-    $register('-filter', function(fn, list) {
-       return list.filter($helper(fn));
+    $register('-filter', function(pred, list) {
+       return list.filter($helper(pred));
     });
     $register('-take-while', function(pred, list) {
-        return _().filter(list, $helper(pred));
+        return _().takeWhile(list, $helper(pred));
     });
     $register('-drop-while', function(pred, list) {
         return _().dropWhile(list, $helper(pred));

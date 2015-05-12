@@ -1,44 +1,44 @@
 {
-  "name": "dashbars",
-  "version": "0.1.7",
-  "description": "A modern helper library",
-  "homepage": "https://github.com/pismute/dashbars",
-  "author": {
-    "name": "Changwoo Park",
-    "email": "pismute@gmail.com",
-    "url": "https://pismute.github.com/"
-  },
-  "repository": "pismute/dashbars",
-  "license": "MIT",
-  "main": "./dist/index",
-  "keywords": [
-    "dashbars",
-    "handlebars",
-    "helpers"
-  ],
-  "dependencies": {
-    "lodash": "^3.8.0",
-    "moment": "^2.10.2"
-  },
-  "devDependencies": {
-    "chai": "^2.3.0",
-    "del": "^1.1.1",
-    "gulp": "^3.8.11",
-    "gulp-bump": "^0.3.0",
-    "gulp-concat": "^2.5.2",
-    "gulp-jshint": "^1.10.0",
-    "gulp-load-plugins": "^0.10.0",
-    "gulp-mocha": "^2.0.1",
-    "gulp-rename": "^1.2.2",
-    "gulp-size": "^1.2.1",
-    "gulp-uglify": "^1.2.0",
-    "gulp-using": "0.0.1",
-    "gulp-util": "^3.0.4",
-    "gulp-wrap": "^0.11.0",
-    "handlebars": "^3.0.3",
-    "run-sequence": "^1.1.0"
-  },
-  "scripts": {
-    "test": "gulp default"
-  }
+    "name": "dashbars",
+    "version": "0.1.8",
+    "description": "A modern helper library",
+    "homepage": "https://github.com/pismute/dashbars",
+    "author": {
+        "name": "Changwoo Park",
+        "email": "pismute@gmail.com",
+        "url": "https://pismute.github.com/"
+    },
+    "repository": "pismute/dashbars",
+    "license": "MIT",
+    "main": "./dist/index",
+    "keywords": [
+        "dashbars",
+        "handlebars",
+        "helpers"
+    ],
+    "dependencies": {
+        "lodash": "^3.8.0",
+        "moment": "^2.10.2"
+    },
+    "devDependencies": {
+        "chai": "^2.3.0",
+        "del": "^1.1.1",
+        "gulp": "^3.8.11",
+        "gulp-bump": "^0.3.0",
+        "gulp-concat": "^2.5.2",
+        "gulp-jshint": "^1.10.0",
+        "gulp-load-plugins": "^0.10.0",
+        "gulp-mocha": "^2.0.1",
+        "gulp-rename": "^1.2.2",
+        "gulp-size": "^1.2.1",
+        "gulp-uglify": "^1.2.0",
+        "gulp-using": "0.0.1",
+        "gulp-util": "^3.0.4",
+        "gulp-wrap": "^0.11.0",
+        "handlebars": "^3.0.3",
+        "run-sequence": "^1.1.0"
+    },
+    "scripts": {
+        "test": "gulp default"
+    }
 }
