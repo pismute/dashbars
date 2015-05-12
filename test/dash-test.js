@@ -76,6 +76,7 @@ describe('dash', function () {
             var list = _.range(1,20);
             expect(helper('_lt-3?', list, options)).to.deep.equal([1,2]);
             expect(helper('_lt-3?', list, options)).to.not.equal(list);
+            expect(helper('n-even?', _.range(0, 5), options)).to.deep.equal([0]);
         });
 
         it('-drop-while', function () {
