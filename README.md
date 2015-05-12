@@ -58,6 +58,8 @@ require('dashbars').help(handlebars);
 
 ```html
 //browser
+<script src="path/to/lodash.js"></script>
+<script src="path/to/moment.js"></script> <!-- for 'd-' helpers -->
 <script src="path/to/handlebars"></script>
 <script src="path/to/dashbars"></script>
 
@@ -79,6 +81,8 @@ require('dashbars').create().help(handlebars2);
 
 ```html
 //browser
+<script src="path/to/lodash.js"></script>
+<script src="path/to/moment.js"></script> <!-- for 'd-' helpers -->
 <script src="path/to/handlebars"></script>
 <script src="path/to/dashbars"></script>
 
