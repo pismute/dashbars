@@ -173,7 +173,7 @@ Handlebars.registerHelper('n-even?', function(n){
 ```
 
 ```html
-{{-json (-take-while 'n-even?' (-range 0 5))}} // [0,2,4]
+{{-json (-take-while 'n-even?' (-range 0 5))}} // [0]
 ```
 
 - [-map](#-map-fn-list) `(fn, list)`
@@ -582,7 +582,7 @@ equals strictly(`===`)
 ##### -take-while `(pred, list)`
 
 ```
-{{-take-while 'n-even?' (-range 0 5)}} // => [0,2,4]
+{{-take-while 'n-even?' (-range 0 5)}} // => [0]
 ```
 
 ##### -drop-while `(pred, list)`
