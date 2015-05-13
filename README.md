@@ -184,6 +184,7 @@ Handlebars.registerHelper('n-even?', function(n){
 - [-sort](#-sort-list-compare) `(list, compare)`
 - [-take](#-take-n-list) `(n, list)`
 - [-drop](#-drop-n-list) `(n, list)`
+- [-filter](#-filter-pred-list) `(pred, list)`
 - [-take-while](#-take-while-pred-list) `(pred, list)`
 - [-drop-while](#-drop-while-pred-list) `(pred, list)`
 - [-slice](#-slice-list-begin-end) `(list, begin, end)`
@@ -581,6 +582,12 @@ equals strictly(`===`)
 
 ```
 {{-drop 3 (-range 0 5)}} // => [3,4]
+```
+
+##### -filter `(pred, list)`
+
+```
+{{-filter 'n-even?' (-range 0 5)}} // => [0,2,4]
 ```
 
 ##### -take-while `(pred, list)`
