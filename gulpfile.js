@@ -13,17 +13,17 @@ gulp.task('bump', function(){
 });
 
 gulp.task('default', function(done){
-    return seq('clean',
-               'scripts',
-               'lint',
-               'test',
-              done);
+    seq('clean',
+        'scripts',
+        'lint',
+        'test',
+        done);
 });
 
 gulp.task('scripts', function(done){
-    return seq('scripts:browser',
-               'scripts:npm',
-               done);
+    seq('scripts:browser',
+        'scripts:npm',
+        done);
 });
 
 gulp.task('scripts:browser', function(){
@@ -70,8 +70,10 @@ gulp.task('test', function() {
 });
 
 // Watch
-gulp.task('watch', ['default'], function(){
+gulp.task('watch', ['default'], function(done){
     gulp.watch('dist/**/*.js', ['default']);
+
+    done();
 });
 
 gulp.task('publish', function(done){
