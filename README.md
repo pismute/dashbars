@@ -12,7 +12,7 @@ Dashbars that is a helper collection be able to easily combined with built-in he
 
 ```html
 {{-take 5 (-drop 3 (-range 0 10))}} // [3,4,5,6,7]
-{{-slice 0 5 (-range 0 10)}} // [0,1,2,3,4]
+{{-slice (-range 0 10) 0 5}} // [0,1,2,3,4]
 
 {{#each (-take 5 (-drop 3 (-range 0 10)))}} // [3,4,5,6,7]
     ...
