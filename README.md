@@ -27,6 +27,8 @@ Dashbars that is a helper collection be able to easily combined with built-in he
 {{/if}}
 ```
 
+You can try this on [trydashbars](http://pismute.github.io/Try-Dashbars/).
+
 ## Install & Usage
 
 ### Install
